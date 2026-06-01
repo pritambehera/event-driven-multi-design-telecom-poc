@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CdrConsumerService {
 
-	@KafkaListener(topics = "cdr-topic", groupId = "cdr-consumer-group")
-	public void consumeCdr(String payload) {
+	@KafkaListener(topics = "cdr-events", groupId = "cdr-consumer-group")
+	public void consumeCdr(String message) {
 		// Process the CDR payload (e.g., parse, store in DB, etc.)
-		System.out.println("Consumed CDR: " + payload);
+		System.out.println("Consumed CDR: " + message);
+		
+		System.out.println("Message from event");
 	}
 }
